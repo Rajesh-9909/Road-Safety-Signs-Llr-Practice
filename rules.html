@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Rules & Regulations</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Optional Bootstrap JS for interactivity -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Custom fade-in animation */
+        .fade-in {
+            animation: fadeIn 1.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+        /* Shine effect for icons */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.2) 100%);
+            transform: rotate(25deg);
+            animation: shine-move 2.5s infinite linear;
+            pointer-events: none;
+        }
+        @keyframes shine-move {
+            0% { left: -50%; }
+            100% { left: 100%; }
+        }
+        /* General styling */
+        body {
+            background: linear-gradient(to bottom right, #e0e7ff, #fff, #dbeafe);
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+        }
+        header {
+            background: linear-gradient(to right, #9333ea, #4f46e5);
+        }
+        .category-section {
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            background: linear-gradient(to bottom right, #e0e7ff, #c7d2fe);
+            min-height: 340px; /* Adjusted for uniform height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distributes content evenly */
+            align-items: center;
+            max-width: 350px;
+            min-width: 220px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .icon-circle {
+            border-radius: 50%;
+            padding: 8px;
+            background: #4f46e5;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .icon-circle:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .example-btn {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 4px 10px;
+            margin: 2px;
+            display: inline-block;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease;
+        }
+        .example-btn:hover {
+            background: #e0e7ff;
+        }
+        footer {
+            background: linear-gradient(to right, #9333ea, #4f46e5);
+        }
+        /* Visually effective Learn About button */
+        .effective-learn-btn {
+            box-shadow: 0 4px 16px 0 rgba(80, 37, 204, 0.15), 0 1.5px 6px 0 rgba(80, 37, 204, 0.10);
+            transition: box-shadow 0.3s cubic-bezier(.4,2,.6,1), transform 0.2s cubic-bezier(.4,2,.6,1);
+            outline: none;
+        }
+        .effective-learn-btn:hover, .effective-learn-btn:focus {
+            box-shadow: 0 6px 32px 0 rgba(147, 51, 234, 0.35), 0 2px 12px 0 rgba(79, 70, 229, 0.20);
+            transform: translateY(-4px) scale(1.05);
+        }
+        .effective-learn-btn:focus-visible {
+            box-shadow: 0 0 0 4px #c4b5fd, 0 6px 32px 0 rgba(147, 51, 234, 0.35);
+        }
+        /* Responsive tweaks */
+        @media (max-width: 767px) {
+            .category-section {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="py-8 mb-8 shadow">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold text-white mb-2 tracking-tight drop-shadow-lg">Road Rules & Regulations</h1>
+            <p class="lead text-white text-lg">Master the rules for safe and responsible driving.</p>
+        </div>
+    </header>
+    <main class="container mb-5">
+        <div class="container px-0">
+            <div class="row g-3 justify-content-center">
+                <!-- First Row: 2 Categories -->
+                <div class="col-12 col-md-6">
+                    <div class="category-section text-center fade-in">
+                        <div class="icon-circle d-inline-block mb-3 shine-effect">
+                            <div class="fs-2 text-white">🚦</div>
+                        </div>
+                        <h5 class="fw-bold text-indigo-800 mb-2 text-lg">TRAFFIC SIGNALS</h5>
+                        <p class="text-gray-700 mb-2 text-base flex-grow-1">Learn about different traffic signals and their meanings for safe driving.</p>
+                        <div class="flex-grow-0">
+                            <h6 class="text-indigo-800 mb-2 text-sm">Common Examples:</h6>
+                            <div class="example-btn">Red: Stop</div>
+                            <div class="example-btn">Yellow: Prepare to Stop</div>
+                            <div class="example-btn">Green: Go</div>
+                        </div>
+                        <button class="btn w-100 mt-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white fw-bold px-2 py-1 rounded-lg shadow-md hover:from-purple-700 hover:to-indigo-700 hover:scale-105 transition-all duration-300 text-sm tracking-wide effective-learn-btn" aria-label="Learn About Traffic Signals">
+                            Learn About Traffic Signals
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="category-section text-center fade-in">
+                        <div class="icon-circle d-inline-block mb-3 shine-effect">
+                            <div class="fs-2 text-white">⚡</div>
+                        </div>
+                        <h5 class="fw-bold text-indigo-800 mb-2 text-lg">SPEED LIMITS</h5>
+                        <p class="text-gray-700 mb-2 text-base flex-grow-1">Understand speed limits in different areas and road conditions.</p>
+                        <div class="flex-grow-0">
+                            <h6 class="text-indigo-800 mb-2 text-sm">Common Examples:</h6>
+                            <div class="example-btn">Residential: 25 mph</div>
+                            <div class="example-btn">Highway: 65 mph</div>
+                            <div class="example-btn">School Zone: 15 mph</div>
+                        </div>
+                        <button class="btn w-100 mt-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white fw-bold px-2 py-1 rounded-lg shadow-md hover:from-purple-700 hover:to-indigo-700 hover:scale-105 transition-all duration-300 text-sm tracking-wide effective-learn-btn" aria-label="Learn About Speed Limits">
+                            Learn About Speed Limits
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 justify-content-center mt-1">
+                <!-- Second Row: 2 Categories -->
+                <div class="col-12 col-md-6">
+                    <div class="category-section text-center fade-in">
+                        <div class="icon-circle d-inline-block mb-3 shine-effect">
+                            <div class="fs-2 text-white">🅿️</div>
+                        </div>
+                        <h5 class="fw-bold text-indigo-800 mb-2 text-lg">PARKING RULES</h5>
+                        <p class="text-gray-700 mb-2 text-base flex-grow-1">Know the rules for parking safely and legally in various situations.</p>
+                        <div class="flex-grow-0">
+                            <h6 class="text-indigo-800 mb-2 text-sm">Common Examples:</h6>
+                            <div class="example-btn">No Parking Zone</div>
+                            <div class="example-btn">Parallel Parking</div>
+                            <div class="example-btn">Time Limits</div>
+                        </div>
+                        <button class="btn w-100 mt-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white fw-bold px-2 py-1 rounded-lg shadow-md hover:from-purple-700 hover:to-indigo-700 hover:scale-105 transition-all duration-300 text-sm tracking-wide effective-learn-btn" aria-label="Learn About Parking Rules">
+                            Learn About Parking Rules
+                        </button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="category-section text-center fade-in">
+                        <div class="icon-circle d-inline-block mb-3 shine-effect">
+                            <div class="fs-2 text-white">↪️</div>
+                        </div>
+                        <h5 class="fw-bold text-indigo-800 mb-2 text-lg">RIGHT OF WAY</h5>
+                        <p class="text-gray-700 mb-2 text-base flex-grow-1">Know when to yield and who has the right of way in various situations.</p>
+                        <div class="flex-grow-0">
+                            <h6 class="text-indigo-800 mb-2 text-sm">Common Examples:</h6>
+                            <div class="example-btn">Yield to Pedestrians</div>
+                            <div class="example-btn">Intersection Rules</div>
+                            <div class="example-btn">Emergency Vehicles</div>
+                        </div>
+                        <button class="btn w-100 mt-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white fw-bold px-2 py-1 rounded-lg shadow-md hover:from-purple-700 hover:to-indigo-700 hover:scale-105 transition-all duration-300 text-sm tracking-wide effective-learn-btn" aria-label="Learn About Right of Way">
+                            Learn About Right of Way
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5 mb-2">
+            <a href="index.html" class="inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold rounded-xl shadow-lg bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 transition-all duration-300"><i class="bi bi-arrow-left"></i> Go Back to Home</a>
+        </div>
+    </main>
+    <footer class="py-6 text-center text-white">
+        <div class="container">
+            <p class="text-sm opacity-80">© 2025 Road Rules & Regulations. All rights reserved.</p>
+            <div class="mt-3">
+                <a href="#privacy" class="text-white mx-3 text-sm hover:underline">Privacy Policy</a>
+                <a href="#terms" class="text-white mx-3 text-sm hover:underline">Terms of Service</a>
+                <a href="#contact" class="text-white mx-3 text-sm hover:underline">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

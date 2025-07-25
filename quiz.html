@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Road Safety Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    .option-btn {
+      transition: all 0.2s ease;
+    }
+    .option-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(199, 75, 75, 0.06);
+    }
+    .progress-bar {
+      transition: width 0.3s ease;
+    }
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity 0.3s;
+    }
+    .fade-enter, .fade-leave-to {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-4 md:p-8">
+  <div id="app" class="max-w-4xl mx-auto">
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="bg-white rounded-2xl shadow-xl overflow-hidden">
+      <div class="p-8 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Road Safety Quiz</h1>
+        <p class="text-gray-600 mb-8">Test your knowledge of road safety rules and traffic signs.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-blue-50 p-6 rounded-xl">
+            <div class="text-blue-600 text-3xl mb-3">📚</div>
+            <h3 class="font-semibold text-lg mb-2">4 Categories</h3>
+            <p class="text-sm text-gray-600">Questions from different road safety categories</p>
+          </div>
+          <div class="bg-green-50 p-6 rounded-xl">
+            <div class="text-green-600 text-3xl mb-3">⏱️</div>
+            <h3 class="font-semibold text-lg mb-2">20 Questions</h3>
+            <p class="text-sm text-gray-600">5 questions from each category</p>
+          </div>
+        </div>
+        <button onclick="startQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+          Start Quiz
+        </button>
+      </div>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="hidden">
+      <!-- Progress Bar -->
+      <div class="bg-white rounded-xl shadow-md p-2 mb-6">
+        <div class="flex justify-between items-center mb-2 px-2">
+          <div class="text-sm font-medium text-gray-700">
+            Question <span id="current-question">1</span>/<span id="total-questions">20</span>
+          </div>
+          <div class="text-sm font-medium text-gray-700">
+            Category: <span id="current-category" class="font-semibold">-</span>
+          </div>
+  </div>
+  <div class="flex flex-col md:flex-row md:items-center md:gap-8 w-full md:w-auto">
+    <div id="timer-warning" class="hidden text-xs text-red-600 font-semibold text-center mb-1"></div>
+    <div class="flex justify-center md:justify-end items-center gap-4 w-full">
+      <div class="flex items-center text-gray-700 dark:text-gray-200 text-lg font-semibold bg-blue-100 dark:bg-blue-900 px-4 py-1 rounded-full shadow-sm">
+        <span class="mr-1">⏰</span>
+        <span id="time-left">15:00</span>
+      </div>
+      <div class="text-gray-600 dark:text-gray-300 text-base">Question <span id="current-question">1</span> of <span id="total-questions">3</span></div>
+    </div>
+  </div>
+</header>
+  <main class="flex-1 flex flex-col md:flex-row items-center justify-center gap-10 p-4 md:p-12 max-w-5xl mx-auto w-full min-h-[60vh]">
+    <section class="flex-1 max-w-xl bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 flex flex-col justify-center">
+      <div class="mb-6">
+        <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden mb-4">
+          <div id="progress-bar" class="h-full bg-blue-500 transition-all duration-300" style="width:0%"></div>
+        </div>
+        <div class="bg-blue-50 dark:bg-blue-900 rounded-xl p-4 mb-4 shadow-sm border border-blue-100 dark:border-blue-800">
+  <h2 id="question-text" class="text-lg font-semibold text-gray-900 dark:text-white"></h2>
+</div>
+        <div id="options-container" class="grid gap-4"></div>
+      </div>
+      <div class="flex justify-between mt-8">
+        <button id="prev-button" class="px-5 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition">← Previous</button>
+        <button id="next-button" class="px-5 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">Next →</button>
+      </div>
+    </section>
+    <aside class="w-full md:w-60 bg-blue-50 dark:bg-gray-900 rounded-2xl shadow p-6 flex-shrink-0 flex flex-col items-center">
+      <h3 class="text-lg font-bold text-blue-700 dark:text-blue-200 mb-4">Question Navigator</h3>
+      <div id="navigator-buttons" class="grid grid-cols-5 gap-2"></div>
+    </aside>
+  </main>
+</div>
+
+
+<!-- Results Screen -->
+<div id="results-screen" class="hidden flex items-center justify-center min-h-screen">
+  <div class="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 max-w-lg w-full border border-gray-200 dark:border-gray-700 flex flex-col items-center">
+    <h2 class="text-3xl font-bold mb-4 text-green-600 dark:text-green-300">Test Results</h2>
+    <div id="result-icon" class="text-5xl mb-4"></div>
+    <p id="result-message" class="text-lg mb-4 text-gray-700 dark:text-gray-200"></p>
+    <div class="score-details text-center mb-6">
+      <p class="text-xl">Score: <span id="score">0</span> / <span id="total-score">0</span></p>
+      <p class="text-lg">Percentage: <span id="percentage">0</span>%</p>
+    </div>
+    <button onclick="location.reload()" class="w-full py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white font-semibold rounded-xl hover:from-green-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 text-lg">
+      🏠 Return to Home
+    </button>
+  </div>
+</div>
+
+</div>
+<!-- Custom Alert Modal -->
+<div id="custom-alert-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-xs p-6 text-center">
+    <div id="custom-alert-message" class="text-gray-800 dark:text-gray-100 text-lg font-semibold mb-6">Are you sure?</div>
+    <div class="flex justify-center gap-4">
+      <button id="custom-alert-confirm" class="px-5 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">Confirm</button>
+      <button id="custom-alert-cancel" class="px-5 py-2 rounded-lg bg-gray-300 dark:bg-gray-600 text-gray-800 dark:text-gray-200 font-semibold hover:bg-gray-400 dark:hover:bg-gray-700 transition">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

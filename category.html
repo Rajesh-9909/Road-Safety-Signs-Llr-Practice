@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Category Learning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Load Supabase first -->
+  <!-- In your category.html -->
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="category.js" type="module"></script>
+  <!-- Load our script after Supabase -->
+  <script>
+    console.log('Initial script loaded');
+    
+    // Wait for the page to fully load
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM fully loaded');
+      
+      // Check if Supabase is loaded
+      if (window.supabase) {
+        console.log('Supabase is available, loading category.js');
+        
+        // Create and append our module script
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = './category.js';
+        document.head.appendChild(script);
+      } else {
+        console.error('Supabase not loaded!');
+        document.getElementById('content').innerHTML = `
+          <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Error!</strong>
+            <span class="block sm:inline"> Failed to load database library. Please refresh the page.</span>
+          </div>
+        `;
+      }
+    });
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-yellow-50 text-gray-800 min-h-screen font-sans p-6">
+  <div class="max-w-5xl mx-auto">
+    <h1 id="category-title" class="text-4xl font-bold mb-6 text-center text-orange-600">Loading...</h1>
+    <div id="content" class="space-y-6"></div>
+  </div>
+</body>
+</html>

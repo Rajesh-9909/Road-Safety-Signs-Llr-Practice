@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="dark:bg-gray-900">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Road Safety Signs</title>
+    <meta name="description" content="Learn about road safety signs and their categories" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'primary-orange': '#f97316',
+              'primary-red': '#ef4444',
+              'mandatory-bg': '#bfdbfe',
+              'cautionary-bg': '#fcd34d',
+              'informational-bg': '#a7f3d0',
+              'dark-bg': '#1f2937',
+              'dark-text': '#e5e7eb',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.6s ease-in-out',
+              'fade-in-delay-1': 'fadeIn 0.6s ease-in-out 0.2s',
+              'fade-in-delay-2': 'fadeIn 0.6s ease-in-out 0.4s',
+              'fade-in-delay-3': 'fadeIn 0.6s ease-in-out 0.6s',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom styles for specific elements */
+      .icon-home::before {
+        content: "🏠";
+      }
+      .icon-book::before {
+        content: "📚";
+      }
+      /* Glassmorphism and animated gradient for header */
+      header {
+        backdrop-filter: blur(12px) saturate(1.3);
+        background: linear-gradient(90deg, #f97316 0%, #ef4444 100%);
+        box-shadow: 0 10px 32px -8px #f9731644, 0 1.5px 0 #fff2;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        transition: box-shadow 0.3s;
+      }
+      header:after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        height: 10px;
+        background: linear-gradient(90deg, #fbbf24 0%, #a7f3d0 100%);
+        opacity: 0.14;
+        border-radius: 0 0 1.5rem 1.5rem;
+        pointer-events: none;
+      }
+      /* Navigation buttons */
+      .main-nav-btn {
+        position: relative;
+        overflow: hidden;
+        outline: none;
+        transition: background 0.22s, color 0.22s, box-shadow 0.22s, transform 0.18s;
+        box-shadow: 0 2px 12px -2px #fbbf2444;
+        border: none;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      .main-nav-btn:focus-visible {
+        outline: 2.5px solid #fbbf24;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px #fbbf2433;
+      }
+      .main-nav-btn:hover, .main-nav-btn:active {
+        background: linear-gradient(90deg, #fff7ed 0%, #fbbf24 100%);
+        color: #f97316 !important;
+        transform: translateY(-2px) scale(1.06);
+        box-shadow: 0 6px 22px -4px #fbbf24a8;
+      }
+      .main-nav-btn.active {
+        background: #f97316 !important;
+        color: #fff !important;
+        box-shadow: 0 4px 16px -4px #f97316a8;
+      }
+      /* Category cards */
+      .category-card {
+        transition: box-shadow 0.32s, transform 0.32s, border 0.18s;
+        border: 1.5px solid #fff6;
+        background: rgba(255,255,255,0.7);
+        backdrop-filter: blur(8px) saturate(1.1);
+        box-shadow: 0 8px 36px 0 #fbbf2444, 0 2px 8px #22c55e22;
+        position: relative;
+      }
+      .category-card:hover, .category-card:focus-within {
+        box-shadow: 0 16px 48px -8px #fbbf24a8, 0 2px 8px #22c55e33;
+        transform: translateY(-7px) scale(1.035) rotate(0.5deg);
+        border: 2px solid #fbbf24;
+        background: rgba(255,255,255,0.93);
+      }
+      .category-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: box-shadow 0.2s, background 0.2s, transform 0.18s;
+        box-shadow: 0 4px 18px -5px #3b82f6a8, 0 2px 8px #fbbf24a8;
+      }
+      .category-icon:hover, .category-card:hover .category-icon {
+        transform: scale(1.12) rotate(-2deg);
+        box-shadow: 0 8px 28px -7px #fbbf24a8;
+      }
+      /* Learn More Button */
+      .learn-more-btn {
+        background: linear-gradient(90deg, #fff 0%, #fbbf24 100%);
+        color: #f97316;
+        font-weight: 700;
+        padding: 0.9rem 2.2rem;
+        border-radius: 0.8rem;
+        border: none;
+        box-shadow: 0 4px 16px -4px #fbbf24a8;
+        font-size: 1.08rem;
+        transition: background 0.22s, color 0.22s, transform 0.22s, box-shadow 0.22s;
+        cursor: pointer;
+        letter-spacing: 0.1px;
+        outline: none;
+      }
+      .learn-more-btn:focus-visible {
+        outline: 2.5px solid #f97316;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px #fbbf2433;
+      }
+      .learn-more-btn:hover, .learn-more-btn:active {
+        background: linear-gradient(90deg, #f97316 0%, #ef4444 100%);
+        color: #fff;
+        box-shadow: 0 8px 24px -6px #fbbf24a8;
+        transform: scale(1.07) translateY(-2px);
+      }
+      /* Info section glass and icons */
+      .additional-info {
+        background: rgba(255,255,255,0.8);
+        backdrop-filter: blur(8px) saturate(1.1);
+        border-radius: 1.5rem;
+        box-shadow: 0 10px 24px -6px #fbbf24a8;
+        border: 1.5px solid #fff6;
+      }
+      .info-icon {
+        background: linear-gradient(135deg, #f59e42 40%, #fde68a 100%);
+        border-radius: 50%;
+        color: #fff;
+        box-shadow: 0 2px 8px #fbbf24a8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.2rem;
+        height: 3.2rem;
+        font-size: 2rem;
+        margin: 0 auto 0.7rem auto;
+        transition: background 0.18s, transform 0.18s;
+      }
+      .info-item:hover .info-icon {
+        background: linear-gradient(135deg, #fbbf24 60%, #f59e42 100%);
+        transform: scale(1.12) rotate(2deg);
+      }
+      /* Animate gradient background */
+      body {
+        background: linear-gradient(120deg, #fef7ed 0%, #fef3c7 60%, #f0abfc 100%);
+        background-size: 200% 200%;
+        animation: bgMove 12s ease-in-out infinite alternate;
+      }
+      @keyframes bgMove {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+      }
+      /* Dark mode polish */
+      @media (prefers-color-scheme: dark) {
+        body, .bg-gradient-main {
+          background: linear-gradient(120deg, #1f2937 0%, #374151 100%);
+          color: #e5e7eb;
+        }
+        .category-card, .additional-info {
+          background: rgba(31,41,55,0.7) !important;
+          color: #e5e7eb;
+          border: 1.5px solid #374151;
+        }
+        .category-card:hover, .category-card:focus-within {
+          background: rgba(31,41,55,0.92) !important;
+        }
+        .learn-more-btn {
+          background: linear-gradient(90deg, #374151 0%, #fbbf24 100%);
+          color: #fbbf24;
+        }
+        .learn-more-btn:hover, .learn-more-btn:active {
+          background: linear-gradient(90deg, #fbbf24 0%, #ef4444 100%);
+          color: #fff;
+        }
+        .info-icon {
+          background: linear-gradient(135deg, #fbbf24 40%, #374151 100%);
+        }
+      }
+      /* Focus/keyboard cues for accessibility */
+      .category-card:focus-within {
+        outline: 2px solid #f97316;
+        outline-offset: 3px;
+      }
+      /* Responsive tweaks */
+      @media (max-width: 900px) {
+        .category-card { padding: 1.2rem 0.7rem; }
+        .additional-info { padding: 1.2rem 0.5rem; }
+      }
+    </style>
+    <script>
+      // Enable Home and Quiz navigation
+      window.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.main-nav-btn').forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            const href = btn.getAttribute('data-href');
+            if (href) window.location.href = href;
+          });
+        });
+      });
+    </script>
+  </head>
+  <body class="bg-gradient-to-br from-amber-50 to-yellow-100 min-h-screen font-sans text-gray-800 dark:bg-gradient-to-br dark:from-dark-bg dark:to-gray-800 dark:text-dark-text">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-primary-orange to-primary-red text-white shadow-lg sticky top-0 z-50 transition-shadow duration-300">
+      <div class="container mx-auto px-4 py-6">
+        <nav class="flex items-center justify-between mb-4">
+          <div class="flex gap-6">
+            <a href="index.html" class="flex items-center gap-2 px-4 py-2 bg-white/10 rounded-lg text-white font-semibold main-nav-btn" aria-label="Home">
+              <span class="icon-home"></span>
+              <span>Home</span>
+            </a>
+            <a href="quiz.html" class="flex items-center gap-2 px-4 py-2 bg-primary-orange rounded-lg text-white font-semibold hover:bg-orange-600 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary-orange transition-all duration-300" aria-label="Quiz">
+              <span class="icon-book"></span>
+              <span>Quiz</span>
+            </a>
+          </div>
+        </nav>
+        <h1 class="text-4xl md:text-5xl font-extrabold text-center tracking-tight">
+          Learn Road Safety Signs
+        </h1>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary-orange dark:text-orange-300">Road Signs by Category</h2>
+          <p class="prose prose-lg text-gray-600 max-w-3xl mx-auto mt-4 dark:text-gray-300">
+            Understanding road signs is essential for safe driving. Learn about the three main categories of road signs and their purposes.
+          </p>
+        </div>
+
+        <!-- Sign Categories Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Mandatory Signs -->
+          <div class="bg-gradient-to-br from-blue-100 to-mandatory-bg rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 category-card animate-fade-in-delay-1 dark:bg-gradient-to-br dark:from-blue-900 dark:to-blue-700">
+            <div class="text-center mb-6">
+              <div class="category-icon w-20 h-20 bg-blue-600 text-white text-4xl rounded-full mx-auto mb-4 shadow-lg transform hover:scale-110 transition-transform duration-300">
+                🚫
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-dark-text">Mandatory Signs</h3>
+              <p class="prose text-gray-700 text-lg mt-2 dark:text-gray-200">
+                Signs that give orders—what you must or must not do on the road.
+              </p>
+            </div>
+            <div class="mt-6">
+              <h4 class="text-lg font-semibold text-gray-900 text-center mb-4 dark:text-dark-text">Common Examples:</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">No Entry</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Speed Limit</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Turn Left Only</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Compulsory Cycle Lane</div>
+              </div>
+            </div>
+            <div class="text-center mt-6">
+              <a href="category.html?category=ms">
+                <button class="learn-more-btn" aria-label="Learn More About Mandatory Signs">
+                  Learn More About Mandatory Signs
+                </button>
+              </a>
+              </div>
+          </div>
+
+          <!-- Cautionary Signs -->
+          <div class="bg-gradient-to-br from-yellow-100 to-cautionary-bg rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 category-card animate-fade-in-delay-2 dark:bg-gradient-to-br dark:from-yellow-900 dark:to-yellow-700">
+            <div class="text-center mb-6">
+              <div class="category-icon w-20 h-20 bg-yellow-600 text-white text-4xl rounded-full mx-auto mb-4 shadow-lg transform hover:scale-110 transition-transform duration-300">
+                ⚠️
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-dark-text">Cautionary Signs</h3>
+              <p class="prose text-gray-700 text-lg mt-2 dark:text-gray-200">
+                Signs that warn you of possible hazards or changes in road conditions.
+              </p>
+            </div>
+            <div class="mt-6">
+              <h4 class="text-lg font-semibold text-gray-900 text-center mb-4 dark:text-dark-text">Common Examples:</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Sharp Turn</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">School Zone</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Animals Crossing</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Road Work Ahead</div>
+              </div>
+            </div>
+            <div class="text-center mt-6">
+              <a href="category.html?category=cs">
+                <button class="learn-more-btn" aria-label="Learn More About Cautionary Signs">
+                  Learn More About Cautionary Signs
+                </button>
+              </a>              
+            </div>
+          </div>
+
+          <!-- Informational Signs -->
+          <div class="bg-gradient-to-br from-green-100 to-informational-bg rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 category-card animate-fade-in-delay-3 dark:bg-gradient-to-br dark:from-green-900 dark:to-green-700">
+            <div class="text-center mb-6">
+              <div class="category-icon w-20 h-20 bg-green-600 text-white text-4xl rounded-full mx-auto mb-4 shadow-lg transform hover:scale-110 transition-transform duration-300">
+                ℹ️
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-dark-text">Informational Signs</h3>
+              <p class="prose text-gray-700 text-lg mt-2 dark:text-gray-200">
+                Signs that provide helpful information about routes and services.
+              </p>
+            </div>
+            <div class="mt-6">
+              <h4 class="text-lg font-semibold text-gray-900 text-center mb-4 dark:text-dark-text">Common Examples:</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Hospital</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Fuel Station</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Rest Area</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Tourist Information</div>
+              </div>
+            </div>
+            <div class="text-center mt-6">
+              <a href="category.html?category=is">
+                <button class="learn-more-btn" aria-label="Learn More About Informational Signs">
+                  Learn More About Informational Signs
+                </button>
+              </a>              
+            </div>
+          </div>
+          <!-- Rules signs -->
+          <div class="bg-gradient-to-br from-blue-100 to-mandatory-bg rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 category-card animate-fade-in-delay-1 dark:bg-gradient-to-br dark:from-blue-900 dark:to-blue-700">
+            <div class="text-center mb-6">
+              <div class="category-icon w-20 h-20 bg-blue-600 text-white text-4xl rounded-full mx-auto mb-4 shadow-lg transform hover:scale-110 transition-transform duration-300">
+                📖
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 dark:text-dark-text">Rules</h3>
+              <p class="prose text-gray-700 text-lg mt-2 dark:text-gray-200">
+                The rules define traffic behavior, safety practices, and sign meanings that drivers must follow.
+              </p>
+            </div>
+            <div class="mt-6">
+              <h4 class="text-lg font-semibold text-gray-900 text-center mb-4 dark:text-dark-text">Common Examples:</h4>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Safety Precaution</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Govt Guidelines</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Traffic Rules</div>
+                <div class="bg-white/80 rounded-lg p-3 text-center text-gray-800 font-medium hover:bg-white transition-all duration-200 dark:bg-gray-800/80 dark:text-gray-200">Traffic Violations and Penalties</div>
+              </div>
+            </div>
+            <div class="text-center mt-6">
+              <a href="category.html?category=rules">
+                <button class="learn-more-btn" aria-label="Learn More About Rules">
+                  Learn More About Rules
+                </button>
+              </a>              
+            </div>
+          </div>  
+      </div>
+    </main>
+  </body>
+</html>
